@@ -3,6 +3,7 @@ Below is a sample problem
 
   //code here for sayHi
 
+
    sayHi('Hi Katie', function(thingToSay){
       alert(thingToSay);
    });
@@ -25,7 +26,10 @@ and what you should write is the sayHi function that makes the code above work,
 
 
   //Code Here for first
-  
+function first(namesArray, firstNameFunc) {
+    firstName = namesArray[0];
+    firstNameFunc(firstName);
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -40,6 +44,9 @@ first(names, function(firstName){
 
 
   //Code Here for last
+function last(namesArray, lastNameFunc) {
+  lastNameFunc(namesArray[namesArray.length - 1]);
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 last(names, function(lastName){
@@ -58,6 +65,10 @@ last(names, function(lastName){
 
 
   //Code Here for multiply
+function multiply(num1, num2, multiplierFunc) {
+    var answer = num1*num2;
+    multiplierFunc(answer);
+}
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -74,6 +85,25 @@ multiply(4, 3, function(answer){
 
 
   //Code Here for contains
+// function contains(namesArray, nameToSearch, isInArray) {
+//     found = false;
+//     for (i=0; i<namesArray.length; i++) {
+//         if (namesArray[i] === nameToSearch) {
+//             found = true;
+//             break;
+//         }
+//     }
+//     return isInArray(found);
+// }
+
+function contains(namesArray, nameToSearch, isInArray) {
+    for (i=0; i<namesArray.length; i++) {
+        if (namesArray[i] === nameToSearch) {
+            return isInArray(true);       
+        }
+    }
+    return isInArray(false);
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 contains(names, 'Colt', function(result){
@@ -95,6 +125,18 @@ contains(names, 'Colt', function(result){
 
     //Code Here for uniq
 
+function uniq (namesArray, func) {
+  var uniqNums = {}, uniqArray= [];
+  for (i=0; i<namesArray.length; i++) {
+    if (!uniqNums[namesArray[i]]) {
+      uniqNums[namesArray[i]] = true;
+      uniqArray.push(namesArray[i]);
+    }
+  }
+  return func(uniqArray);
+}
+
+
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -110,6 +152,11 @@ uniq(names, function(uniqArr){
 
 
     //Code Here for each
+function each (nameArray, func) {
+  nameArray.forEach(function(name, index) {
+      func(name,index);
+  });
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 each(names, function(item, indice){
@@ -128,6 +175,13 @@ each(names, function(item, indice){
 
  //code here for getUserById
 
+function getUserById (usersArray, id, func) {
+  usersArray.forEach(function(user) {
+    if (user.id == id) {
+        func(user);
+    }
+  })
+}
 var users = [
   {
     id: '12d',
